@@ -72,19 +72,29 @@
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\FloatingJoystick.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Joysticks\VariableJoystick.cs" />
     <Compile Include="Assets\Scripts\CameraController\CameraController.cs" />
+    <Compile Include="Assets\Scripts\CanvasScripts\BulletCounter.cs" />
     <Compile Include="Assets\Scripts\Entity\BaseEntity.cs" />
     <Compile Include="Assets\Scripts\Entity\CombatEntity.cs" />
+    <Compile Include="Assets\Scripts\Entity\EnemyNormalEntity.cs" />
     <Compile Include="Assets\Scripts\Entity\PlayerEntity.cs" />
     <Compile Include="Assets\Scripts\Generics\ObjectPool.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IenviromentData.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IObservable.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IObserver.cs" />
     <Compile Include="Assets\Scripts\Managers\EventManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\GameManager.cs" />
     <Compile Include="Assets\Scripts\OffScenesScripts\Control.cs" />
     <Compile Include="Assets\Scripts\OffScenesScripts\Movement.cs" />
+    <Compile Include="Assets\Scripts\OffScenesScripts\SpawnChecker.cs" />
+    <Compile Include="Assets\Scripts\OffScenesScripts\SpawnSeek.cs" />
+    <Compile Include="Assets\Scripts\OffScenesScripts\Timer.cs" />
     <Compile Include="Assets\Scripts\StaticScripts\BulletSpawner.cs" />
+    <Compile Include="Assets\Scripts\StaticScripts\EnemySpawner.cs" />
+    <Compile Include="Assets\Scripts\StaticScripts\Utils.cs" />
     <Compile Include="Assets\Scripts\TypeOfBullet\BulletEntity.cs" />
     <Compile Include="Assets\Scripts\TypeOfWeapons\Pistol.cs" />
     <Compile Include="Assets\Scripts\TypeOfWeapons\WeaponEntity.cs" />
+    <None Include="Assets\ExternalParty\asdasd.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Davinci/TerrorWood/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

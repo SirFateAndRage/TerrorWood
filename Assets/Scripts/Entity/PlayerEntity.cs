@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using CharControl;
 
-public class PlayerEntity : CombatEntity, IObservable
+public class PlayerEntity : CombatEntity, IObservable,IenviromentData
 {
     [SerializeField]
     Joystick left_joystick;
@@ -36,6 +36,8 @@ public class PlayerEntity : CombatEntity, IObservable
         base.Start();
         _control = new Control(this);
         _movement = new Movement(this, _control);
+        DataReturn(this.transform);
+
         StatePlayer =NotShooting;
     }
 
@@ -61,19 +63,19 @@ public class PlayerEntity : CombatEntity, IObservable
         else StatePlayer = Shooting;
     }
 
+   
     void NotShooting() 
     {
-        NotifyToObservers("notshooting");
+        //NotifyToObservers(Utils.ActionObservers.notshooting);
         _movement.MovementDir(_mSpeed, _control._DataJoystickLeft);
     }
 
     void Shooting()
     {
         
-        NotifyToObservers("shooting");
+        NotifyToObservers(Utils.ActionObservers.shooting);
        _movement.MovementDir(_mSpeed * 0.5f, _control._DataJoystickRight);
     }
-
 
     List<IObserver> _allObservers = new List<IObserver>();
     public void Subscribe(IObserver obs)
@@ -88,11 +90,16 @@ public class PlayerEntity : CombatEntity, IObservable
             _allObservers.Remove(obs);
     }
 
-    public void NotifyToObservers(string action)
+    public void NotifyToObservers(Utils.ActionObservers action)
     {
         for (int i = 0; i < _allObservers.Count; i++)
         {
             _allObservers[i].Notify(action);
         }
+    }
+
+    public void DataReturn(Transform t)
+    {
+        GameManager.instance.AddEnviromentData(t);
     }
 }
