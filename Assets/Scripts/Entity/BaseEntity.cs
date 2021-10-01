@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseEntity : MonoBehaviour
+public abstract class BaseEntity : MonoBehaviour,IEnviromentData
 {
     // Entidad Basica, todo lo que tiene en comun.
     // se va a dividir en:
@@ -68,5 +68,15 @@ public abstract class BaseEntity : MonoBehaviour
                 render.material = defaultMat;
             }
         }
+    }
+
+    public void DataReturn(Transform t)
+    {
+        DataManager.instance.AddEnviromentData(t);
+    }
+
+    public void RemoveData(Transform t)
+    {
+        DataManager.instance.RemoveEnviromentData(t);
     }
 }

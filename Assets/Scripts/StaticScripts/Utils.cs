@@ -1,7 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿
 public static class Utils 
 {
     public enum ActionObservers
@@ -9,7 +6,12 @@ public static class Utils
         notshooting,
         shooting,
         bulletQuantity,
-        ResetBulletQuantity
+        ResetBulletQuantity,
+        Test
+       
 
     }
+
+   
+
 }

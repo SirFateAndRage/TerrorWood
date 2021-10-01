@@ -10,8 +10,12 @@ public  class BulletEntity : MonoBehaviour
     [SerializeField]
     float maxDistance;
     float _distance;
-    
+   [SerializeField]
     WeaponEntity _weapon;
+    protected virtual void Start()
+    {
+
+    }
 
     protected virtual void Update()
     {
@@ -20,27 +24,27 @@ public  class BulletEntity : MonoBehaviour
 
         if(_distance >= maxDistance)
         {
-           BulletSpawner.instance.pool.ReturnObject(this);
+          _weapon.pool.ReturnObject(this);
         }
  
     }
-    private void Reset()
+    private void Reset() => _distance = 0;
+    public virtual void InitialBullet(WeaponEntity w)
     {
-        _distance = 0;
+        _weapon = w;
     }
+    
 
-   private void TakeReference()
-    {
-       
-    }
+  
     public static void TurnOn(BulletEntity b)
     {
-        b.TakeReference();
+        //Debug.Log("3");
         b.Reset();
         b.gameObject.SetActive(true);
     }
     public static void TurnOff(BulletEntity b)
     {
+      //  Debug.Log("2");
         b.gameObject.SetActive(false);
     }
    

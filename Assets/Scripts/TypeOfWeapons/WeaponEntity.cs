@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using TimerCloack;
 
-public abstract class WeaponEntity : MonoBehaviour, IObserver, IObservable
+// aplicar strategy o decorator
+public abstract class WeaponEntity : MonoBehaviour,IObservable<int>
 {
+
+    //Strategy para los powerups
+
     // este script es el padre de todas las armas, todas las armas tienen, metodo de balas,cantidad de balas,frecuencia del disparo, recarga.
+    
     [SerializeField]
     Transform[] spawn;
     public PlayerEntity Player;
     [SerializeField]
-    BulletEntity Bullet;
+     public BulletEntity _Bullet;
     [SerializeField]
     int MaxBullet;
 
-    IObservable _playerToCopy;
-
+   public  ObjectPool<BulletEntity> pool;
     [SerializeField]
     float _timeBetweenBullet;
     [SerializeField]
@@ -28,41 +32,38 @@ public abstract class WeaponEntity : MonoBehaviour, IObserver, IObservable
     TimerMethod _timer;
 
     bool _testing = true;
+    public bool _isShooting = false;
 
-
-    public int BulletCapacity()
+    public WeaponEntity Weapon
     {
-        return MaxBullet;
+        get => this;
     }
+    public int Bullet
+    {
+        get => MaxBullet;
+    }
+
+   
     protected virtual void Start()
    {
         _timer = new TimerMethod();
-        BulletSpawner.instance.bullet = Bullet;
-        BulletSpawner.instance.pool = new ObjectPool<BulletEntity>(BulletSpawner.instance.BulletReturn, BulletEntity.TurnOn, BulletEntity.TurnOff, MaxBullet);
-        _playerToCopy = Player;
-        _playerToCopy.Subscribe(this);
+       
+         pool = new ObjectPool<BulletEntity> (BulletReturn,BulletEntity.TurnOn, BulletEntity.TurnOff, MaxBullet);
+
+       _countBullet = MaxBullet;
     }
 
-    public void Notify(Utils.ActionObservers Action)
+    private void Update()
     {
-        if (Action == Utils.ActionObservers.shooting)   
+        if (_isShooting)
             Shoot();
-       /* if(Action == Utils.ActionObservers.notshooting)
-        {
-            if (_countBullet == 0) return;
-            if (_timer.Timer(waitForRecharge))
-            {
-                StartCoroutine(Recharge());
-            }
-        }*/
-
     }
 
     protected virtual void Shoot()
     {
         if (_charge) return;
 
-            if (_countBullet != MaxBullet)
+            if (_countBullet != 0)
             {
                    if (_testing)
                         Testing();
@@ -78,13 +79,13 @@ public abstract class WeaponEntity : MonoBehaviour, IObserver, IObservable
     {
         _testing = false;
         _timer.passTime = 0;
-        _countBullet++;
+        _countBullet--;
         
        
         for (int i = 0; i < spawn.Length; i++)
         {
-            NotifyToObservers(Utils.ActionObservers.bulletQuantity);
-            var b = BulletSpawner.instance.pool.GetObject();
+            NotifyToObservers(_countBullet);
+            var b = pool.GetObject();
             b.transform.position = spawn[i].transform.position;
             b.transform.forward = spawn[i].transform.forward;
         }
@@ -95,39 +96,43 @@ public abstract class WeaponEntity : MonoBehaviour, IObserver, IObservable
     {
         _charge = true;
         yield return new WaitForSeconds(recharge);
-        NotifyToObservers(Utils.ActionObservers.ResetBulletQuantity);
         _testing = true;
         _charge = !_testing;
-        _countBullet = 0;
-        
+        _countBullet = MaxBullet;
+        NotifyToObservers(_countBullet);
+
 
     }
-   
 
-
-    List<IObserver> _allObservers = new List<IObserver>();
-    public void Subscribe(IObserver obs)
+    public BulletEntity BulletReturn()
     {
-        if (!_allObservers.Contains(obs))
-            _allObservers.Add(obs);
+        _Bullet.InitialBullet(this);
+        return Instantiate(_Bullet);
     }
 
-    public void Unsubscribe(IObserver obs)
+ 
+
+    List<IObserver<int>> _allObserver = new List<IObserver<int>>();
+
+    public void Subscribe(IObserver<int> obs)
     {
-        if (_allObservers.Contains(obs))
-            _allObservers.Remove(obs);
+        if (!_allObserver.Contains(obs))
+            _allObserver.Add(obs);
     }
 
-    public void NotifyToObservers(Utils.ActionObservers actionObservers)
+    public void Unsubscribe(IObserver<int> obs)
     {
-        for (int i = 0; i < _allObservers.Count; i++)
+        if (_allObserver.Contains(obs))
+            _allObserver.Remove(obs);
+    }
+
+    public void NotifyToObservers(int action)
+    {
+        for (int i = 0; i < _allObserver.Count; i++)
         {
-            _allObservers[i].Notify(actionObservers);
+            _allObserver[i].Notify(action);
         }
     }
-
-  
-
 }
 
    

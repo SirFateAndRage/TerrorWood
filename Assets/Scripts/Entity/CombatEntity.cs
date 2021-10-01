@@ -5,13 +5,17 @@ using UnityEngine;
 public class CombatEntity : BaseEntity
 {
     
+    
     protected override void Awake() => base.Awake();
     protected override void Start()
     {
         base.Start();
     }
 
-    protected override void FixedUpdate() => base.FixedUpdate();
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+    }
 
     protected override void Update()
     {
@@ -23,6 +27,8 @@ public class CombatEntity : BaseEntity
     {
 
     }
+
+
 
     protected virtual void TakeDamage( float dmg)
     {

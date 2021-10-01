@@ -6,23 +6,44 @@ using CharControl;
 public class Movement
 {
     PlayerEntity _player;
-    Control _control;
 
-   
+    Vector3 _Direction;
+    Vector3 _FaceDirection;
+     public float _speed;
 
-    public Movement(PlayerEntity p,Control c)
+
+
+
+    public Movement(PlayerEntity p,float s)
     {
         _player = p;
-        _control = c;
+        _speed = s;
+
     }
 
-    public void  MovementDir(float speed,Vector3 data)
+    public void MovementDir(Vector3 data)
     {
-        _player.transform.LookAt(_player.transform.position + _control._DataJoystickLeft);
-        _player.Model().transform.LookAt(_player.Model().transform.position + data);
-        _player.rb.MovePosition(_player.rb.position + _player.transform.forward * _control._DataJoystickLeft.magnitude * speed * Time.deltaTime);
-      
+
+        _Direction = data;
+
+    }
+    public void Facedirection(Vector3 data)
+    {
+        _FaceDirection = data;
+
     }
 
+    public void OnUpdate()
+    {
+        _player.rb.MovePosition(_player.rb.position + _player.transform.forward * _Direction.magnitude * _speed * Time.deltaTime);
+
+        _player.transform.LookAt(_player.transform.position + _Direction);
+
+    }
+
+    public void OnFixedUpdate()
+    {
+        _player.Model().transform.LookAt(_player.transform.position + _FaceDirection);
+    }
 }
 

@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IenviromentData 
+public interface IEnviromentData 
 {
     void DataReturn(Transform t);
+    void RemoveData(Transform t);
 }

@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IObservable
+public interface IObservable<T>
 {
-    void Subscribe(IObserver obs);
-    void Unsubscribe(IObserver obs);
+    void Subscribe(IObserver<T> obs);
+    void Unsubscribe(IObserver<T> obs);
 
-    void NotifyToObservers(Utils.ActionObservers actionObservers);
+    void NotifyToObservers(T action);
 }

@@ -8,6 +8,8 @@ public class EventManager : MonoBehaviour
 
    static Dictionary<EventType, EventReceiver> _events = new Dictionary<EventType, EventReceiver>();
 
+   
+
 
 
     public static void Subscribe (EventType eventType,EventReceiver listener)

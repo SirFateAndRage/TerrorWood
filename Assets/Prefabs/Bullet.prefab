@@ -107,3 +107,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 30
   maxDistance: 15
+  _weapon: {fileID: 4032790678934799165, guid: 911998250bbcc9d4098dca4d344584f7, type: 3}
