@@ -34,7 +34,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField]
     Grid _gridToEnemy;
 
-
     public ObjectPool<EnemyNormalEntity> pool;
 
      public int MaxRadius() => _maxRadius;

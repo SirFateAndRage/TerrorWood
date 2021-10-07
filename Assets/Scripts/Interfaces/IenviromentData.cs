@@ -7,3 +7,5 @@ public interface IEnviromentData
     void DataReturn(Transform t);
     void RemoveData(Transform t);
 }
+
+

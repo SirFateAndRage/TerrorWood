@@ -96,7 +96,6 @@
     <Compile Include="Assets\Scripts\Path\Node.cs" />
     <Compile Include="Assets\Scripts\Path\PathFinding.cs" />
     <Compile Include="Assets\Scripts\StaticScripts\EnemySpawner.cs" />
-    <Compile Include="Assets\Scripts\StaticScripts\Utils.cs" />
     <Compile Include="Assets\Scripts\Strategy\BatPowerUp.cs" />
     <Compile Include="Assets\Scripts\Strategy\IPowerUp.cs" />
     <Compile Include="Assets\Scripts\Strategy\MachineGunPowerUp.cs" />

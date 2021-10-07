@@ -12,11 +12,6 @@ public  class BulletEntity : MonoBehaviour
     float _distance;
    [SerializeField]
     WeaponEntity _weapon;
-    protected virtual void Start()
-    {
-
-    }
-
     protected virtual void Update()
     {
         transform.position += transform.forward * _speed * Time.deltaTime;

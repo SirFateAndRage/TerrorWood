@@ -93,7 +93,8 @@ public class Grid : MonoBehaviour
    
     // para tener yo una representacion visual de la grilla que estoy creando
     
-    /*private void OnDrawGizmos()
+    /*
+    private void OnDrawGizmos()
     {
         Gizmos.DrawWireCube(transform.position, new Vector3(gridWorldSize.x, 1, gridWorldSize.y));
 
@@ -122,6 +123,7 @@ public class Grid : MonoBehaviour
    
     }
     */
+    
     
    
     

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class BaseEntity : MonoBehaviour,IEnviromentData
+public abstract class BaseEntity : MonoBehaviour,IEnviromentData, ICombat
 {
     // Entidad Basica, todo lo que tiene en comun.
     // se va a dividir en:
@@ -48,20 +48,19 @@ public abstract class BaseEntity : MonoBehaviour,IEnviromentData
     }
     protected virtual void Update()
     {
-        BasicFeed();
+       
     }
     protected virtual void FixedUpdate()
     {
 
     }
-
-    protected virtual void BasicFeed()
+    public virtual void TakeDamage(float dmg)
     {
         if (feedDamage)
         {
             render.material = damageMat;
             timerFeed += Time.deltaTime;
-            if(timerFeed > 0.2)
+            if (timerFeed > 0.2)
             {
                 feedDamage = false;
                 timerFeed = 0;
@@ -69,6 +68,8 @@ public abstract class BaseEntity : MonoBehaviour,IEnviromentData
             }
         }
     }
+
+
 
     public void DataReturn(Transform t)
     {
@@ -79,4 +80,6 @@ public abstract class BaseEntity : MonoBehaviour,IEnviromentData
     {
         DataManager.instance.RemoveEnviromentData(t);
     }
+
+  
 }

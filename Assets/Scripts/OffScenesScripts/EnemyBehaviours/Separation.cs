@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using VectorDesired;
 
-public class Separation : MonoBehaviour
+public class Separation
 {
    
     DesiredVector _vector;
