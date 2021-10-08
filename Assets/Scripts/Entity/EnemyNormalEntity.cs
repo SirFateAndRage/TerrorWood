@@ -43,6 +43,9 @@ public class EnemyNormalEntity : CombatEntity
 
     public int currentPathindex;
     float actualLife;
+    FSM _fsm;
+
+    public float Life { get { return actualLife; } }
 
 
     protected override void Awake()
@@ -55,13 +58,19 @@ public class EnemyNormalEntity : CombatEntity
 
     protected override void Start()
     {
+       
         base.Start();
         _desired = new DesiredVector();
         _baseMovement = new BaseMovement(this.transform, _maxSpeed);
          DataReturn(this.transform);
         _pathfinding = new PathFinding(this.transform, _target.transform, _referencegrid);
-        _movementPath = new PathFindingMovement(_desired, _maxSpeed, _maxForce, _pathfinding, this.transform, _target.transform);
+       // _movementPath = new PathFindingMovement(_desired, _maxSpeed, _maxForce, _pathfinding, this.transform, _target.transform);
         _separation = new Separation(_desired, this.transform, _distSeparation, _maxSpeed, _maxForce);
+
+        _fsm = new FSM();
+        _fsm.AddState(EnemyState.PathFinding, new PathFindingState(_desired, _maxSpeed, _maxForce, _pathfinding, this, _target.transform,_baseMovement,_fsm));
+        _fsm.AddState(EnemyState.ArriveEnemy, new ArriveState());
+       
 
 
     }
@@ -70,24 +79,31 @@ public class EnemyNormalEntity : CombatEntity
         actualLife = maxhealt;
 
     }
-    public  void TakeReference(CombatEntity c,Grid g) 
-    {
-        _target = c;
-        _referencegrid = g;
    
-    } 
     protected override void Update()
     {
        
         base.Update();
         _baseMovement.OnUpdate();
-        _movementPath.OnUpdate();
+        _fsm.OnUpdate();
+      
+       // _movementPath.OnUpdate();
     }
 
     protected override void FixedUpdate()
     {
         base.FixedUpdate();
-        _baseMovement.AddForce(_movementPath.MoveWithFinding(_baseMovement.Velocity)  + _separation.SepationEn(_baseMovement.Velocity)* 1);
+        //_baseMovement.AddForce(_movementPath.MoveWithFinding(_baseMovement.Velocity)  + _separation.SepationEn(_baseMovement.Velocity)* 1);
+        _baseMovement.AddForce(_separation.SepationEn(_baseMovement.Velocity));
+    }
+
+    #region Methods for pool
+
+    public void TakeReference(CombatEntity c, Grid g)
+    {
+        _target = c;
+        _referencegrid = g;
+
     }
     public static void TurnOn(EnemyNormalEntity b)
     {
@@ -100,17 +116,26 @@ public class EnemyNormalEntity : CombatEntity
         b.RemoveData(b.transform);
         b.gameObject.SetActive(false);
     }
+    #endregion
 
     public override void TakeDamage(float dmg)
     {
+        var l = actualLife;
         actualLife -= dmg;
-        Debug.Log(actualLife);
-        if (actualLife <= 0)
+
+        if (actualLife < 0)
+            _fsm.ChangeStates(EnemyState.Die);
+        if (actualLife != l)
+            _fsm.ChangeStates(EnemyState.ReciveDmg);
+
+       /* if (actualLife <= 0)
         {
             TurnOff(this);
             EnemySpawner.instance.countenemy--;
 
         }
+       */
+       
            
     }
 

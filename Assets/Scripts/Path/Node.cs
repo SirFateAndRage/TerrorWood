@@ -19,7 +19,7 @@ public class Node
     public Node(bool a_isWall,Vector3 a_Pos,int a_gridX, int a_gridY)
     {
         IsWall = a_isWall;
-        Position = a_Pos;
+        Position = new Vector3(a_Pos.x,0,a_Pos.z);
         gridX = a_gridX;
         gridY = a_gridY;
     }
