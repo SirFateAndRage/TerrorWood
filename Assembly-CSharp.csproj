@@ -64,6 +64,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Audio\AudioCue.cs" />
     <Compile Include="Assets\Scripts\Base\Joystick.cs" />
     <Compile Include="Assets\Scripts\Base\Joysticks\DynamicJoystick.cs" />
     <Compile Include="Assets\Scripts\Base\Joysticks\FixedJoystick.cs" />
@@ -95,6 +96,9 @@
     <Compile Include="Assets\Scripts\Path\Grid.cs" />
     <Compile Include="Assets\Scripts\Path\Node.cs" />
     <Compile Include="Assets\Scripts\Path\PathFinding.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\FSM.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\IState.cs" />
+    <Compile Include="Assets\Scripts\StateMachine\States\EmptyState.cs" />
     <Compile Include="Assets\Scripts\StaticScripts\EnemySpawner.cs" />
     <Compile Include="Assets\Scripts\Strategy\BatPowerUp.cs" />
     <Compile Include="Assets\Scripts\Strategy\IPowerUp.cs" />

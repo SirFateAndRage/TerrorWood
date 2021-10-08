@@ -42,11 +42,13 @@ public class EnemyNormalEntity : CombatEntity
     float _distSeparation;
 
     public int currentPathindex;
+    float actualLife;
 
 
     protected override void Awake()
     {
         base.Awake();
+        
        
 
     }
@@ -65,7 +67,8 @@ public class EnemyNormalEntity : CombatEntity
     }
     protected virtual void Reset()
     {
-        
+        actualLife = maxhealt;
+
     }
     public  void TakeReference(CombatEntity c,Grid g) 
     {
@@ -98,6 +101,19 @@ public class EnemyNormalEntity : CombatEntity
         b.gameObject.SetActive(false);
     }
 
+    public override void TakeDamage(float dmg)
+    {
+        actualLife -= dmg;
+        Debug.Log(actualLife);
+        if (actualLife <= 0)
+        {
+            TurnOff(this);
+            EnemySpawner.instance.countenemy--;
 
-  
+        }
+           
+    }
+
+
+
 }
