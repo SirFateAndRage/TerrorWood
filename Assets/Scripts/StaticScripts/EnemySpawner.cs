@@ -68,7 +68,7 @@ public class EnemySpawner : MonoBehaviour
 
     //pasar a metodo que se engargue de buscar los spawn
     Vector3 _desired;
-    int countenemy;
+     public int countenemy;
     public void SpawnInstance()
     {
         _desired = Vector3.zero;

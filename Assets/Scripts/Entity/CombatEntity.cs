@@ -30,10 +30,7 @@ public class CombatEntity : BaseEntity
 
 
 
-    protected virtual void TakeDamage( float dmg)
-    {
-
-    }
+  
     protected virtual void Die()
     {
 

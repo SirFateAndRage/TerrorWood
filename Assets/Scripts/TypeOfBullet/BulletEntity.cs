@@ -12,6 +12,8 @@ public  class BulletEntity : MonoBehaviour
     float _distance;
    [SerializeField]
     WeaponEntity _weapon;
+
+
     protected virtual void Update()
     {
         transform.position += transform.forward * _speed * Time.deltaTime;
@@ -21,12 +23,13 @@ public  class BulletEntity : MonoBehaviour
         {
           _weapon.pool.ReturnObject(this);
         }
- 
+
     }
     private void Reset() => _distance = 0;
     public virtual void InitialBullet(WeaponEntity w)
     {
         _weapon = w;
+      
     }
     
 
@@ -42,5 +45,34 @@ public  class BulletEntity : MonoBehaviour
       //  Debug.Log("2");
         b.gameObject.SetActive(false);
     }
-   
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other);
+        ICombat _iCombat = other.gameObject.GetComponent<ICombat>();
+        Debug.Log(_iCombat);
+        if (_iCombat == null) return;
+
+        _iCombat.TakeDamage(PistolDamage());
+        _weapon.pool.ReturnObject(this);
+    }
+
+    private int _chancheToCrit;
+    private int _falsePercentage;
+    private int dmg;
+    public float PistolDamage()
+    {
+        _chancheToCrit = Random.Range(_falsePercentage + 0, 100);
+        if (_chancheToCrit <= 65)
+        {
+            _falsePercentage += 10;
+            return dmg = Random.Range(10, 35);
+        }
+        else
+        {
+            _falsePercentage = 0;
+            return dmg = Random.Range(35, 50);
+        }
+    }
+
 }

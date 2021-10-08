@@ -823,7 +823,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 3.3799999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -872,15 +872,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7853994d34ba31745a88380496bc499d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 398040751914078115, guid: 84c849dd0cddda24e9f8357d3b7bd7a4, type: 3}
+  enemy: {fileID: 1038952292768294812, guid: 3b15ee1959bde044ca27018e2a984877, type: 3}
   _minRadius: 8
   _maxRadius: 50
-  _maxEnemy: 15
-  _spawnBeetweenEnemy: 0.2
+  _maxEnemy: 1
+  _spawnBeetweenEnemy: 1
   _ground: {fileID: 151062204}
   _player: {fileID: 1778511264}
   _decoRange: 4
   _gridToEnemy: {fileID: 1276751163}
+  countenemy: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -1192,14 +1193,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234290932}
-  m_LocalRotation: {x: -0, y: -0.3035515, z: -0, w: 0.95281506}
-  m_LocalPosition: {x: 180.7, y: 965.23, z: 911.1}
+  m_LocalRotation: {x: -0, y: 0.003962459, z: -0, w: 0.9999922}
+  m_LocalPosition: {x: 214.15, y: 965.23, z: 897.55}
   m_LocalScale: {x: 11.925281, y: 6.060862, z: 11.362001}
   m_Children:
   - {fileID: 1103177729}
   m_Father: {fileID: 1164745403}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: -35.342003, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0.45400003, z: 0}
 --- !u!65 &1234290934
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1528,11 +1529,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferencePixelsPerUnit: 1080
+  m_ScaleFactor: 0.5
+  m_ReferenceResolution: {x: 1080, y: 1920}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1549,7 +1550,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -1712,7 +1713,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1778511262}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.6, y: 4.09, z: -10.2}
+  m_LocalPosition: {x: -14.6, y: 1.65, z: -10.2}
   m_LocalScale: {x: 1, y: 1.2, z: 1}
   m_Children:
   - {fileID: 1860721201}
@@ -1917,7 +1918,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999942720}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 181.6, y: 967, z: 946.3}
+  m_LocalPosition: {x: 177.56, y: 967, z: 946.3}
   m_LocalScale: {x: 21.843174, y: 11.134741, z: 11.362001}
   m_Children:
   - {fileID: 1428537192}
