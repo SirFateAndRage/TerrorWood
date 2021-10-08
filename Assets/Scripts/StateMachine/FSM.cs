@@ -10,7 +10,7 @@ public enum EnemyState
    ReciveDmg,
    Die
 }
-public class FSM : MonoBehaviour
+public class FSM
 {
     IState _currentState = new EmptyState();
     public List<IState> stateList = new List<IState>();

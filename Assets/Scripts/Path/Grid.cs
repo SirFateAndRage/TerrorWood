@@ -90,9 +90,10 @@ public class Grid : MonoBehaviour
 
         return NodeArray[x, y];
     }
-   
+
     // para tener yo una representacion visual de la grilla que estoy creando
-    
+
+
     /*
     private void OnDrawGizmos()
     {
@@ -120,11 +121,16 @@ public class Grid : MonoBehaviour
                 Gizmos.DrawCube(node.Position, Vector3.one * (nodeDiamaeter - Distance));
             }
         }
+    
+    
    
     }
     */
     
-    
-   
-    
+
+
+
+
+
+
 }
