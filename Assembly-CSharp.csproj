@@ -76,7 +76,7 @@
     <Compile Include="Assets\Scripts\Generics\LookUpTable.cs" />
     <Compile Include="Assets\Scripts\Generics\ObjectPool.cs" />
     <Compile Include="Assets\Scripts\Interfaces\ICombat.cs" />
-    <Compile Include="Assets\Scripts\Interfaces\IEnviromentData.cs" />
+    <Compile Include="Assets\Scripts\Interfaces\IenviromentData.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IObservable.cs" />
     <Compile Include="Assets\Scripts\Interfaces\IObserver.cs" />
     <Compile Include="Assets\Scripts\Managers\DataManager.cs" />
@@ -102,7 +102,6 @@
     <Compile Include="Assets\Scripts\TypeOfBullet\BulletEntity.cs" />
     <Compile Include="Assets\Scripts\TypeOfWeapons\Pistol.cs" />
     <Compile Include="Assets\Scripts\TypeOfWeapons\WeaponEntity.cs" />
-    <None Include="Assets\ExternalParty\asdasd.txt" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>C:/Davinci/TerrorWood/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
